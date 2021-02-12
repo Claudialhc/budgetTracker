@@ -15,11 +15,15 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/budget";
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-});
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/budget_tracker',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 // routes
 app.use(require("./routes/api.js"));
